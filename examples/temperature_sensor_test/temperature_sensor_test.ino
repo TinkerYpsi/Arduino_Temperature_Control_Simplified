@@ -1,4 +1,4 @@
-#include <DallasTemperature.h>
+#include <DallasTemperature_simplified.h>
 // Data wire is plugged into pin 2 on the Arduino
 #define DATA_PIN 2
 /********************************************************************/
@@ -8,15 +8,15 @@ DallasTemperature sensor;
 void setup()
 {
  Serial.begin(9600);
- sensors.begin();
+ sensor.begin();
 }
 void loop()
 {
  Serial.print(" Requesting temperatures...");
- sensors.requestTemperatures(); // Send the command to get temperature readings
+ sensor.requestTemperatures(); // Send the command to get temperature readings
  Serial.println("DONE");
 /********************************************************************/
  Serial.print("Temperature is: ");
- Serial.print(sensors.getTempF());
+ Serial.print(sensor.getTempF());
    delay(1000);
 }
