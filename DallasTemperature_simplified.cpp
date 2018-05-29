@@ -527,6 +527,10 @@ float DallasTemperature::getTempC(const uint8_t* deviceAddress) {
 	return rawToCelsius(getTemp(deviceAddress));
 }
 
+float DallasTemperature::getTempC() {
+	return rawToCelsius(getTemp(0));
+}
+
 // returns temperature in degrees F or DEVICE_DISCONNECTED_F if the
 // device's scratch pad cannot be read successfully.
 // the numeric value of DEVICE_DISCONNECTED_F is defined in
@@ -534,6 +538,10 @@ float DallasTemperature::getTempC(const uint8_t* deviceAddress) {
 // operating range of the device
 float DallasTemperature::getTempF(const uint8_t* deviceAddress) {
 	return rawToFahrenheit(getTemp(deviceAddress));
+}
+
+float DallasTemperature::getTempF() {
+	return rawToFahrenheit(getTemp(0));
 }
 
 // returns true if the bus requires parasite power

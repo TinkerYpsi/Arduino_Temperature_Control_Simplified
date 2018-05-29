@@ -113,8 +113,14 @@ public:
 	// returns temperature in degrees C
 	float getTempC(const uint8_t*);
 
+	// returns temperature in degrees C at index 0
+	float getTempC();
+
 	// returns temperature in degrees F
 	float getTempF(const uint8_t*);
+
+	// returns temperature in degrees F at index 0
+	float getTempF();
 
 	// Get temperature for device index (slow)
 	float getTempCByIndex(uint8_t);
