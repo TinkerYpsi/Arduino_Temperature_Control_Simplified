@@ -10,12 +10,12 @@
 //
 
 #include <OneWire.h>
-#include <DallasTemperature.h>
+#include <TT_Temp.h>
 
 #define ONE_WIRE_BUS      2
 
 OneWire oneWire(ONE_WIRE_BUS);
-DallasTemperature sensors(&oneWire);
+TT_Temp sensors(&oneWire);
 
 uint8_t deviceCount = 0;
 
@@ -56,7 +56,7 @@ void setup(void)
   Serial.println("Dallas Temperature Demo");
 
   sensors.begin();
-  
+
   // count devices
   deviceCount = sensors.getDeviceCount();
   Serial.print("#devices: ");

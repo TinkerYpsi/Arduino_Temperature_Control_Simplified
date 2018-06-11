@@ -1,6 +1,6 @@
 // Include the libraries we need
 #include <OneWire.h>
-#include <DallasTemperature.h>
+#include <TT_Temp.h>
 
 // Data wire is plugged into port 2 on the Arduino
 #define ONE_WIRE_BUS 2
@@ -10,7 +10,7 @@
 OneWire oneWire(ONE_WIRE_BUS);
 
 // Pass our oneWire reference to Dallas Temperature.
-DallasTemperature sensors(&oneWire);
+TT_Temp sensors(&oneWire);
 
 // arrays to hold device addresses
 DeviceAddress insideThermometer, outsideThermometer;
@@ -105,7 +105,7 @@ void printTemperature(DeviceAddress deviceAddress)
   Serial.print("Temp C: ");
   Serial.print(tempC);
   Serial.print(" Temp F: ");
-  Serial.print(DallasTemperature::toFahrenheit(tempC));
+  Serial.print(TT_Temp::toFahrenheit(tempC));
 }
 
 // function to print a device's resolution

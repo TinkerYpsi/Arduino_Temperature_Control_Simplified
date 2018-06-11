@@ -1,9 +1,9 @@
-#include <DallasTemperature_simplified.h>
+#include <TT_Temp.h>
 // Data wire is plugged into pin 2 on the Arduino
 #define DATA_PIN 2
 /********************************************************************/
 // Pass our oneWire reference to Dallas Temperature.
-DallasTemperature sensor;
+TT_Temp sensor;
 /********************************************************************/
 void setup()
 {
