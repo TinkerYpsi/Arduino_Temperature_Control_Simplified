@@ -1,5 +1,5 @@
-#ifndef DallasTemperature_h
-#define DallasTemperature_h
+#ifndef TT_Temp_h
+#define TT_Temp_h
 
 #define DALLASTEMPLIBVERSION "3.7.9" // To be deprecated
 
@@ -35,11 +35,11 @@
 
 typedef uint8_t DeviceAddress[8];
 
-class DallasTemperature {
+class TT_Temp {
 public:
 
-	DallasTemperature();
-	DallasTemperature(OneWire*);
+	TT_Temp();
+	TT_Temp(OneWire*);
 
 	void setOneWire(OneWire*);
 
@@ -113,8 +113,14 @@ public:
 	// returns temperature in degrees C
 	float getTempC(const uint8_t*);
 
+	// returns temperature in degrees C at index 0
+	float getTempC();
+
 	// returns temperature in degrees F
 	float getTempF(const uint8_t*);
+
+	// returns temperature in degrees F at index 0
+	float getTempF();
 
 	// Get temperature for device index (slow)
 	float getTempCByIndex(uint8_t);

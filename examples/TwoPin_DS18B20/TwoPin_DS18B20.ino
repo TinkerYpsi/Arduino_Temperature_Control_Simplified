@@ -10,7 +10,7 @@
 //
 
 #include <OneWire.h>
-#include <DallasTemperature.h>
+#include <TT_Temp.h>
 
 #define ONE_WIRE_BUS_1 2
 #define ONE_WIRE_BUS_2 4
@@ -18,8 +18,8 @@
 OneWire oneWire_in(ONE_WIRE_BUS_1);
 OneWire oneWire_out(ONE_WIRE_BUS_2);
 
-DallasTemperature sensor_inhouse(&oneWire_in);
-DallasTemperature sensor_outhouse(&oneWire_out);
+TT_Temp sensor_inhouse(&oneWire_in);
+TT_Temp sensor_outhouse(&oneWire_out);
 
 void setup(void)
 {

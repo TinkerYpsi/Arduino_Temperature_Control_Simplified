@@ -1,5 +1,5 @@
 #include <OneWire.h>
-#include <DallasTemperature.h>
+#include <TT_Temp.h>
 
 // Data wire is plugged into port 2 on the Arduino
 #define ONE_WIRE_BUS 2
@@ -8,8 +8,8 @@
 // Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
 OneWire oneWire(ONE_WIRE_BUS);
 
-// Pass our oneWire reference to Dallas Temperature. 
-DallasTemperature sensors(&oneWire);
+// Pass our oneWire reference to Dallas Temperature.
+TT_Temp sensors(&oneWire);
 
 int numberOfDevices; // Number of temperature devices found
 
@@ -23,22 +23,22 @@ void setup(void)
 
   // Start up the library
   sensors.begin();
-  
+
   // Grab a count of devices on the wire
   numberOfDevices = sensors.getDeviceCount();
-  
+
   // locate devices on the bus
   Serial.print("Locating devices...");
-  
+
   Serial.print("Found ");
   Serial.print(numberOfDevices, DEC);
   Serial.println(" devices.");
 
   // report parasite power requirements
-  Serial.print("Parasite power is: "); 
+  Serial.print("Parasite power is: ");
   if (sensors.isParasitePowerMode()) Serial.println("ON");
   else Serial.println("OFF");
-  
+
   // Loop through each device, print out address
   for(int i=0;i<numberOfDevices; i++)
   {
@@ -50,15 +50,15 @@ void setup(void)
 		Serial.print(" with address: ");
 		printAddress(tempDeviceAddress);
 		Serial.println();
-		
+
 		Serial.print("Setting resolution to ");
 		Serial.println(TEMPERATURE_PRECISION, DEC);
-		
+
 		// set the resolution to TEMPERATURE_PRECISION bit (Each Dallas/Maxim device is capable of several different resolutions)
 		sensors.setResolution(tempDeviceAddress, TEMPERATURE_PRECISION);
-		
+
 		 Serial.print("Resolution actually set to: ");
-		Serial.print(sensors.getResolution(tempDeviceAddress), DEC); 
+		Serial.print(sensors.getResolution(tempDeviceAddress), DEC);
 		Serial.println();
 	}else{
 		Serial.print("Found ghost device at ");
@@ -83,18 +83,18 @@ void printTemperature(DeviceAddress deviceAddress)
   Serial.print("Temp C: ");
   Serial.print(tempC);
   Serial.print(" Temp F: ");
-  Serial.println(DallasTemperature::toFahrenheit(tempC)); // Converts tempC to Fahrenheit
+  Serial.println(TT_Temp::toFahrenheit(tempC)); // Converts tempC to Fahrenheit
 }
 
 void loop(void)
-{ 
-  // call sensors.requestTemperatures() to issue a global temperature 
+{
+  // call sensors.requestTemperatures() to issue a global temperature
   // request to all devices on the bus
   Serial.print("Requesting temperatures...");
   sensors.requestTemperatures(); // Send the command to get temperatures
   Serial.println("DONE");
-  
-  
+
+
   // Loop through each device, print out temperature data
   for(int i=0;i<numberOfDevices; i++)
   {
@@ -104,12 +104,12 @@ void loop(void)
 		// Output the device ID
 		Serial.print("Temperature for device: ");
 		Serial.println(i,DEC);
-		
+
 		// It responds almost immediately. Let's print out the data
 		printTemperature(tempDeviceAddress); // Use a simple function to print out the data
-	} 
+	}
 	//else ghost device! Check your power requirements and cabling
-	
+
   }
 }
 

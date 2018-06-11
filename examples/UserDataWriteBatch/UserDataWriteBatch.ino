@@ -10,12 +10,12 @@
 //
 
 #include <OneWire.h>
-#include <DallasTemperature.h>
+#include <TT_Temp.h>
 
 #define ONE_WIRE_BUS      2
 
 OneWire oneWire(ONE_WIRE_BUS);
-DallasTemperature sensors(&oneWire);
+TT_Temp sensors(&oneWire);
 
 uint8_t deviceCount = 0;
 
@@ -43,7 +43,7 @@ void setup(void)
   deviceCount = sensors.getDeviceCount();
   Serial.print("#devices: ");
   Serial.println(deviceCount);
-  
+
   Serial.println();
   Serial.println("current ID's");
   for (uint8_t index = 0; index < deviceCount; index++)
@@ -55,7 +55,7 @@ void setup(void)
     int id = sensors.getUserData(t);
     Serial.println(id);
   }
-  
+
   Serial.println();
   Serial.print("Enter ID for batch: ");
   int c = 0;
